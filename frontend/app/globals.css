@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --font-body: var(--font-body);
+}
+.btn-elevated {
+  transition: all 150ms;
+  box-shadow: 0 4px 0 0 #1F3FA0;
+}
+.btn-elevated:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 #1F3FA0;
+}
+.btn-elevated:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+.btn-elevated-dark {
+  transition: all 150ms;
+  box-shadow: 0 4px 0 0 #000000;
+}
+.btn-elevated-dark:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 #000000;
+}
+.btn-elevated-dark:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
