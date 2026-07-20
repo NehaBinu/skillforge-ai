@@ -33,5 +33,13 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+const auth = require("../middleware/auth");
 
+router.get("/me", auth, async (req, res) => {
+  const user = await User.findById(req.userId).select("-password");
+  res.json(user);
+});
+router.post("/logout", (req, res) => {
+  res.clearCookie("token").json({ message: "Logged out" });
+});
 module.exports = router;

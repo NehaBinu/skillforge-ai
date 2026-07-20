@@ -10,11 +10,12 @@ const stripeRoutes = require("./routes/stripe");
 
 const app = express();
 
-// Webhook route needs raw body — must be registered BEFORE express.json()
-app.use("/api/stripe/webhook", express.raw({ type: "application/json" }));
-app.post("/api/stripe/webhook", require("./routes/stripe"));
-
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+
+// Webhook needs the RAW body for Stripe's signature check —
+// this must run before express.json() touches the request body.
+app.use("/api/stripe/webhook", express.raw({ type: "application/json" }));
+
 app.use(express.json());
 app.use(cookieParser());
 

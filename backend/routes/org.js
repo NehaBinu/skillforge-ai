@@ -18,6 +18,15 @@ router.post("/", auth, async (req, res) => {
   res.json(org);
 });
 
+router.get("/plans", async (req, res) => {
+  try {
+    const plans = await Plan.find();
+    res.json(plans);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.get("/mine", auth, async (req, res) => {
   const memberships = await Membership.find({ userId: req.userId }).populate("orgId");
   res.json(memberships);
